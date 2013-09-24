@@ -8,3 +8,5 @@ description 'puppet module for configuring  basic node properties
 project page 'https://github.com/openstack-hyper-v/puppet-basenode.git'
 dependency 'puppetlabs/ntp'
 dependency 'puppetlabs/puppet' 
+dependency 'puppetlabs/mount_providers' 
+dependency 'rtyler/jenkins' 
