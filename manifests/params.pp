@@ -8,7 +8,8 @@ class basenode::params {
     }
     /(Red Hat|CentOS|Fedora)/:
     {
-      $nfs_packages = [ "nfs-utils", "nfs-utils-lib", "portmap", "system-config-nfs" ]
+#      $nfs_packages = [ "nfs-utils", "nfs-utils-lib", "portmap", "system-config-nfs" ]
+      $nfs_packages = [ "nfs-utils"]
     }
   }
 
