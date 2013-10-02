@@ -5,6 +5,7 @@ author 'Nick Meier <Nick.Meier@microsoft.com'
 license 'Apache 2.0'
 summary 'Module for configuring standard node options'
 description 'puppet module for configuring  basic node properties 
+dependency 'puppetlabs/stdlib'
 dependency 'puppetlabs/ntp'
 dependency 'puppetlabs/puppet' 
 dependency 'puppetlabs/mount_providers' 
