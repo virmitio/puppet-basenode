@@ -23,5 +23,4 @@ define nfs_mounts($device,$options){
     require => File["${name}/${hostname}"],
   }
 
-
 }

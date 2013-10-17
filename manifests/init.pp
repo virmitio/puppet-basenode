@@ -25,6 +25,7 @@ if $kernel == 'Linux' {
   package {$nfs_packages :
     ensure => latest,
   }
+  class {'basenode::pxefile':}
 
   create_resources(nfs_mounts,$nfs_mounts)
 

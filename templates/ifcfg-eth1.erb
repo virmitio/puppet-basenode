@@ -1,0 +1,9 @@
+<% if @interface_type == 'eth' -%>
+DEVICE="eth1"
+<% end -%>
+<% if @interface_type == 'em' -%>
+DEVICE="em2"
+<% end -%>
+BOOTPROTO="none"
+MTU="1500"
+ONBOOT="yes"
