@@ -35,7 +35,7 @@ class basenode {
   }
   if $osfamily == 'Redhat' {
     exec {'update_yum':
-      exec      => '/usr/bin/yum update -y', 
+      command   => '/usr/bin/yum update -y', 
       logoutput => true,
     }
   }
