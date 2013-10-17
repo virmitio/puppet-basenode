@@ -6,10 +6,10 @@ class basenode::pxefile {
 
 
 
-  file {"${name}/${hostname}/${arp_type}${host_macaddress}":
+  file {"/nfs/${hostname}/${arp_type}${host_macaddress}":
     ensure => file,
-    content => template('quartermaster/node_pxe_file.erb'),
-    require => File["${name}/${hostname}"],
+    content => template('basenode/pxefile.erb'),
+    require => File["/nfs/${hostname}"],
   }
 
 }
