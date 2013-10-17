@@ -1,6 +1,6 @@
 class basenode::pxefile {
 
-  $arp_type => '01'
+  $arp_type = '01'
 
   $host_macaddress = regsubst($macaddress, '(\.)','(\-)','G')
 
