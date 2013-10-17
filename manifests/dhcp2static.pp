@@ -13,23 +13,23 @@ class basenode::dhcp2static {
   file {"/etc/sysconfig/network-scripts/ifcfg-${iface1}":
     ensure => present,
     content => template('basenode/ifcfg-eth0.erb'),
-    notify => service['network'],
+#    notify => service['network'],
   }
   file {"/etc/sysconfig/network-scripts/ifcfg-${iface2}":
     ensure => present,
     content => template('basenode/ifcfg-eth1.erb'),
-    notify => service['network'],
+#    notify => service['network'],
   }
 
   file {'/etc/sysconfig/network':
     ensure => present,
     content => template('basenode/network.erb'),
-    notify => service['network'],
+#    notify => service['network'],
   }
 
   file {'/etc/resolv.conf':
     ensure => present,
-    notify => service['network'],
+#    notify => service['network'],
     content => ["
 domain openstack.tld
 search openstack.tld

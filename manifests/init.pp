@@ -21,45 +21,22 @@ class basenode {
     splay                     => true,
   }
 
-if $kernel == 'Linux' { 
-  package {$nfs_packages :
-    ensure => latest,
-  }
-  class {'basenode::pxefile':}
+  if $kernel == 'Linux' { 
 
-  create_resources(nfs_mounts,$nfs_mounts)
+    package {$nfs_packages :
+      ensure => latest,
+    }
 
-# SSH Keys and Authorized_Keys2 file
+    class {'basenode::pxefile':}
+    class {'basenode::sshkey_root':}
 
- file { '/root/.ssh':
-    ensure => directory,
-    owner  => root,
-    group  => root,
-    mode   => 0600,
-  }
- file { '/root/.ssh/id_dsa':
-    ensure => file,
-    owner  => root,
-    group  => root,
-    mode   => 0600,
-    source  => "puppet:///extra_files/id_dsa",
-  }
+    create_resources(nfs_mounts,$nfs_mounts)
 
- file { '/root/.ssh/id_dsa.pub':
-    ensure => file,
-    owner  => root,
-    group  => root,
-    mode   => 0600,
-    source  => "puppet:///extra_files/id_dsa.pub",
   }
-
-  file { '/root/.ssh/authorized_keys':
-    ensure  => file,
-    owner   => root,
-    group   => root,
-    mode    => 0600,
-    source  => "puppet:///extra_files/id_dsa.pub",
-    require => File[ '/root/.ssh' ],
+  if $osfamily == 'Redhat' {
+    exec {'update_yum':
+      exec      => '/usr/bin/yum update -y', 
+      logoutput => true,
+    }
   }
- }
 }
