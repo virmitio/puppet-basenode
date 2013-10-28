@@ -27,6 +27,12 @@ class basenode {
       ensure => latest,
     }
 
+  package {['python-paramiko','python-netaddr']:
+    ensure   => latest,
+    provider => yum,
+  }
+
+
     class {'basenode::pxefile':}
     class {'basenode::sshkey_root':}
 

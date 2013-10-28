@@ -10,6 +10,13 @@ class basenode::dhcp2static {
     /(em)/  => 'em2', 
   }
 
+  $iface3 = $interface_type ? {
+    /(eth)/ => 'eth2', 
+    /(em)/  => 'em3', 
+  }
+
+
+
   file {"/etc/sysconfig/network-scripts/ifcfg-${iface1}":
     ensure => present,
     content => template('basenode/ifcfg-eth0.erb'),
@@ -19,6 +26,13 @@ class basenode::dhcp2static {
     ensure => present,
     content => template('basenode/ifcfg-eth1.erb'),
 #    notify => service['network'],
+  }
+  if $iface3 {
+    file {"/etc/sysconfig/network-scripts/ifcfg-${iface3}":
+      ensure => present,
+      content => template('basenode/ifcfg-eth2.erb'),
+#     notify => service['network'],
+    }
   }
 
   file {'/etc/sysconfig/network':

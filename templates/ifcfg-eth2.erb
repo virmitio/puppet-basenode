@@ -1,0 +1,22 @@
+<% if @macaddress_eth2 -%>
+DEVICE="eth2"
+<% end -%>
+<% if @macaddress_em3 -%>
+DEVICE="em3"
+<% end -%>
+ONBOOT="yes"
+BOOTPROTO="static"
+MTU="1500"
+<% if @ipaddress_em3 -%>
+IPADDR=<%= @ipaddress_em3 %>
+<% end -%>
+<% if @ipaddress_eth2 -%>
+IPADDR=<%= @ipaddress_eth2 %>
+<% end -%>
+<% if @macaddress_em3 -%>
+NETMASK=<%= @netmask_em3 %>
+<% end -%>
+<% if @macaddress_eth2 -%>
+NETMASK=<%= @netmask_eth2 %>
+<% end -%>
+PEERDNS="no"
