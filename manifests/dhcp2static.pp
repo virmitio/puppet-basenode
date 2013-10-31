@@ -16,24 +16,19 @@ class basenode::dhcp2static {
   }
 
 
+      file {"/etc/sysconfig/network-scripts/ifcfg-${iface1}":
+        ensure => file,
+        content => template('basenode/ifcfg-eth0.erb'),
+      }
+      file {"/etc/sysconfig/network-scripts/ifcfg-${iface2}":
+        ensure => file,
+        content => template('basenode/ifcfg-eth1.erb'),
+      }
+      file {"/etc/sysconfig/network-scripts/ifcfg-${iface3}":
+        ensure => file,
+        content => template('basenode/ifcfg-eth2.erb'),
+      }
 
-  file {"/etc/sysconfig/network-scripts/ifcfg-${iface1}":
-    ensure => present,
-    content => template('basenode/ifcfg-eth0.erb'),
-#    notify => service['network'],
-  }
-  file {"/etc/sysconfig/network-scripts/ifcfg-${iface2}":
-    ensure => present,
-    content => template('basenode/ifcfg-eth1.erb'),
-#    notify => service['network'],
-  }
-  if $iface3 {
-    file {"/etc/sysconfig/network-scripts/ifcfg-${iface3}":
-      ensure => present,
-      content => template('basenode/ifcfg-eth2.erb'),
-#     notify => service['network'],
-    }
-  }
 
   file {'/etc/sysconfig/network':
     ensure => present,
@@ -58,12 +53,12 @@ nameserver 10.21.7.2
     enable => true,
     hasstatus => true,
     hasrestart => true,
-    subscribe => File["/etc/sysconfig/network-scripts/ifcfg-${iface1}",
-                      "/etc/sysconfig/network-scripts/ifcfg-${iface2}",
-                      '/etc/sysconfig/network','/etc/resolv.conf'],
+#    subscribe => File["/etc/sysconfig/network-scripts/ifcfg-${iface1}",
+#                      "/etc/sysconfig/network-scripts/ifcfg-${iface2}",
+#                      '/etc/sysconfig/network','/etc/resolv.conf'],
   }
-File["/etc/sysconfig/network-scripts/ifcfg-${iface1}"] ->
-  File["/etc/sysconfig/network-scripts/ifcfg-${iface2}"] ->
-    File['/etc/sysconfig/network']                         ->
-      Service['network']
 }
+#File["/etc/sysconfig/network-scripts/ifcfg-${iface1}"] ->
+#  File["/etc/sysconfig/network-scripts/ifcfg-${iface2}"] ->
+#    File['/etc/sysconfig/network']                         ->
+#      Service['network']

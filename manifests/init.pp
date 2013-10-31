@@ -29,7 +29,6 @@ class basenode {
 
   package {['python-paramiko','python-netaddr']:
     ensure   => latest,
-    provider => yum,
   }
 
 
