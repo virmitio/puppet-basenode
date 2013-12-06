@@ -6,21 +6,27 @@ define nfs_mounts($device,$options){
     require => Package[$basenode::nfs_packages],
   }
 
-  file {"${name}/${hostname}":
+  file {"${name}/hosts/${hostname}":
     ensure => directory,
     require => Mount_providers::Do[$name],
   }
 
-  file {"${name}/${hostname}/dns.yaml":
+  file {"${name}/hosts/${hostname}/dns.yaml":
     ensure => file,
 #    content => template('ipam/dns_record.erb'),
-    require => File["${name}/${hostname}"],
+    require => File["${name}/hosts/${hostname}"],
   }
 
-  file {"${name}/${hostname}/dhcp.yaml":
+  file {"${name}/hosts/${hostname}/dhcp.yaml":
     ensure => file,
 #    content => template('ipam/static_ip.erb'),
-    require => File["${name}/${hostname}"],
+    require => File["${name}/hosts/${hostname}"],
   }
+  file {"${name}/hosts/${hostname}/interfaceinfo.yaml":
+    ensure => file,
+    content => template('basenode/interfaceinfo.erb'),
+    require => File["${name}/hosts/${hostname}"],
+  }
+
 
 }

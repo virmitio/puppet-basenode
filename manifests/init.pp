@@ -7,7 +7,6 @@ class basenode {
   $nfs_mounts     = hiera('nfs_mounts',{})
   $nfs_packages = $params::nfs_packages
 
-
   notify {"Node: ${hostname}":}
 
   # Set NTP

@@ -1,0 +1,17 @@
+<% if @macaddress_em0 -%>
+  idrac-<%= @serialnumber %>:
+      mac: <%= @macaddress_idrac %> 
+      ip: <%= @ipaddress_idrac %>
+<% end -%>
+<% arr = @interfaces %>
+<% arr = arr.split "," %>
+<% t = "-" %>
+<% arr.each do |ix|  %> 
+  <% if ix != "lo" then %>
+  <%= ix %><%= t %><%= @serialnumber %>:
+      <% m = "macaddress_" + ix %>
+      mac: <% @m %>
+      ip: <%= @ipaddress_ix %>
+  <% end -%>
+<% end -%>
+

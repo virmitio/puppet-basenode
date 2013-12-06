@@ -1,0 +1,13 @@
+<% if @macaddress_idrac -%>
+  idrac-<%= @serialnumber %>:
+      mac: <%= @macaddress_idrac %> 
+      ip: <%= @ipaddress_idrac %>
+<% end -%>
+<% for ix in "<%=@interfaces%>" %> 
+  <% if ix != "lo" then %>
+  ix-<%= @serialnumber %>:
+      mac: <%= @macaddress_ix %>
+      ip: <%= @ipaddress_ix %>
+  <% end -%>
+<% end -%>
+

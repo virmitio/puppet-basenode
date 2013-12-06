@@ -7,10 +7,10 @@ class basenode::pxefile {
 
 
 
-  file {"/nfs/${hostname}/${arp_type}-${host_macaddress}":
+  file {"/nfs/hosts/${hostname}/${arp_type}-${host_macaddress}":
     ensure => file,
     content => template('basenode/pxefile.erb'),
-    require => File["/nfs/${hostname}"],
+    require => File["/nfs/hosts/${hostname}"],
   }
 
 }
