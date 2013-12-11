@@ -14,5 +14,3 @@ class basenode::params {
   }
 
 }
-	= primeministerp
-	email = primeministerpete@gmail.com
