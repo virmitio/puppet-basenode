@@ -1,0 +1,13 @@
+class basenode::ipmitools{
+
+   package {'ipmitool':
+     ensure => latest,
+   }
+
+   file {'/root/ipmi-tools': 
+    ensure  => directory,
+    recurse => true,
+    source  => 'puppet:///extra_files/ipmi-tools' 
+    require => Package['ipmitool'],
+   }
+}

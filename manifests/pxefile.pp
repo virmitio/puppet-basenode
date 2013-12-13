@@ -1,4 +1,4 @@
-class basenode::pxefile {
+define basenode::pxefile {
 
   $arp_type = '01'
 
@@ -7,7 +7,7 @@ class basenode::pxefile {
 
 
 
-  file {"/nfs/hosts/${hostname}/${arp_type}-${host_macaddress}":
+  file {"//${hostname}/${arp_type}-${host_macaddress}":
     ensure => file,
     content => template('basenode/pxefile.erb'),
     require => File["/nfs/hosts/${hostname}"],
