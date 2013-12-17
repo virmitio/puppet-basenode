@@ -26,9 +26,13 @@ class basenode {
       ensure => latest,
     }
 
-  package {['python-paramiko','python-netaddr']:
-    ensure   => latest,
-  }
+   package {['python-paramiko','python-netaddr']:
+     ensure   => latest,
+   }
+   package {['screen','rsync']:
+      ensure   => latest,
+   }
+
 
 
     class {'basenode::pxefile':}
