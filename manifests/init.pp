@@ -35,7 +35,7 @@ class basenode {
 
 
 
-    class {'basenode::pxefile':}
+#    class {'basenode::pxefile':}
     class {'basenode::sshkey_root':}
 
     create_resources(nfs_mounts,$nfs_mounts)
