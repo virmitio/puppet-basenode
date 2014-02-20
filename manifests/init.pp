@@ -43,7 +43,8 @@ class basenode {
   }
   if $osfamily == 'Redhat' {
     exec {'update_yum':
-      command   => '/usr/bin/yum update -y', 
+#      command   => '/usr/bin/yum update -y --disablerepo Xen4CentOS --skip-broken', 
+      command   => '/usr/bin/yum update -y --skip-broken', 
       logoutput => true,
     }
   }

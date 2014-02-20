@@ -5,10 +5,15 @@ define nfs_mounts($device,$options){
     options => $options,
     require => Package[$basenode::nfs_packages],
   }
+  
+  file {"${name}/hosts":
+    ensure => directory,
+    require => Mount_providers::Do[$name],
+  }
 
   file {"${name}/hosts/${hostname}":
     ensure => directory,
-    require => Mount_providers::Do[$name],
+    require => File["${name}/hosts"],
   }
 
   file {"${name}/hosts/${hostname}/dns.yaml":
