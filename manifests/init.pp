@@ -41,11 +41,11 @@ class basenode {
     create_resources(nfs_mounts,$nfs_mounts)
 
   }
-  if $osfamily == 'Redhat' {
-    exec {'update_yum':
-#      command   => '/usr/bin/yum update -y --disablerepo Xen4CentOS --skip-broken', 
-      command   => '/usr/bin/yum update -y --skip-broken', 
-      logoutput => true,
-    }
-  }
+#  if $osfamily == 'Redhat' {
+#    exec {'update_yum':
+##      command   => '/usr/bin/yum update -y --disablerepo Xen4CentOS --skip-broken', 
+#      command   => '/usr/bin/yum update -y --skip-broken', 
+#      logoutput => true,
+#    }
+#  }
 }
